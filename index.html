@@ -1,1 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEIC</title> <!--We want to give the truth to the best, ME? -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000; 
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        .logo {
+            margin-bottom: 20px;
+            width: 150px; /* */
+        }
+        .countdown {  /* We want to give the truth to the best */
+            font-size: 36px;
+            font-weight: bold;
+            color: #ff007f;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px rgba(255, 0, 127, 0.5), 0 0 10px rgba(255, 0, 127, 0.5);
+            position: relative;
+            display: inline-block;
+        }
+        .message {
+            display: none;
+            font-size: 18px;
+            color: #ffffff;
+            margin-top: 20px;
+            font-weight: normal;
+        }
+        .email {
+            font-size: 16px;
+            color: #dddddd;
+            margin-top: 20px;
+        }
+        .glitch {
+            position: relative;
+            display: inline-block;
+            font-family: 'Courier New', Courier, monospace;
+            color: #ff007f; 
+            font-size: 36px;
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #ff007f;
+            background: #000000;
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0);
+            z-index: -1;
+            animation: glitch-anim 1s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: 2px;
+            text-shadow: -1px 0 #ff007f;
+            animation: glitch-anim 1.5s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim {
+            0% {
+                clip: rect(20px, 9999px, 40px, 0);
+                transform: skew(0.5deg);
+            }
+            100% {
+                clip: rect(20px, 9999px, 80px, 0);
+                transform: skew(-0.5deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="WEICLOGO.png"  class="logo">
+        <div class="glitch" data-text="Waiting...">Waiting...</div>
+        <div class="message" id="message">
+            <p>The countdown is over. To uncover the truth, please send an email to <a href="mailto:7765696370726f6a6563743334@gmail.com">7765696370726f6a6563743334@gmail.com</a> and you will be contacted very soon.</p><!--We want to give the truth to the best, YOU? -->
+        </div>
+    </div>
 
+    <script>
+        function startCountdown() {
+            const countdownElement = document.querySelector('.glitch');
+            const messageElement = document.getElementById('message');
+            let secondsLeft = 34; // We want to give the truth to the best, YOU?
+
+            function updateCountdown() {
+                const minutes = Math.floor(secondsLeft / 60);
+                const seconds = secondsLeft % 60;
+                countdownElement.textContent = `Wait 34 seconds. Patience will lead you to the truth. ${minutes}m ${seconds}s...`;
+                countdownElement.setAttribute('data-text', `Wait 34 seconds. Patience will lead you to the truth.  ${minutes}m ${seconds}s...`);
+
+                if (secondsLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownElement.style.display = 'none';
+                    messageElement.style.display = 'block';
+                }
+
+                secondsLeft--;
+            }
+
+
+            const countdownInterval = setInterval(updateCountdown, 1000);
+        }
+
+        window.onload = startCountdown;
+    </script>
+</body>
+</html>
